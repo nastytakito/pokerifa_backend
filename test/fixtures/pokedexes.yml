@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Bulbasaur
+  dex_number: 1
+  attack: 1
+  defense: 1
+  sp_attack: 1
+  sp_defense: 1
+  speed: 1
+  total: 1
+
+two:
+  name: Ivysaur
+  dex_number: 2
+  attack: 3
+  defense: 4
+  sp_attack: 5
+  sp_defense: 6
+  speed: 7
+  total: 8
