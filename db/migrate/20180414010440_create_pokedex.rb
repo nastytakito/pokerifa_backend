@@ -1,4 +1,4 @@
-class CreatePokedexes < ActiveRecord::Migration[5.2]
+class CreatePokedex < ActiveRecord::Migration[5.2]
   def change
     create_table :pokedex do |t|
       t.string :name

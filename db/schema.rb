@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_174749) do
+ActiveRecord::Schema.define(version: 2018_04_18_172307) do
 
   create_table "pokedex", force: :cascade do |t|
     t.string "name"
@@ -36,9 +36,13 @@ ActiveRecord::Schema.define(version: 2018_04_18_174749) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
