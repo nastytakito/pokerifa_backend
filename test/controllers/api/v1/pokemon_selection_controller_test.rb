@@ -9,8 +9,9 @@ module Api
       end
 
       test "should get show" do
-        get api_v1_pokemon_selection_url 2
-        assert_equal 2, json_response['id']
+        get(api_v1_pokemon_selection_url(pokemon_selections(:two).id), as: :json)
+        puts json_response
+        assert_equal pokedexes(:two).id, json_response['pokemon_selection']['pokemon']['id']
         assert_response :success
       end
 
@@ -22,7 +23,6 @@ module Api
                 user_id: User.take.id
             }
         }, as: :json)
-        puts json_response
 
         assert_equal prev_total+1, PokemonSelection.all.size
         assert_response :success

@@ -13,7 +13,7 @@ class ActiveSupport::TestCase
   end
 
   def json_response
-    JSON.parse response.body
+    JSON.parse(response.body)['result']
   end
 
 end

@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::API
+  include ActionView::Layouts
 
-  rescue_from Exception, with: :handle_general_exception
-  rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found_exception
-  rescue_from ActiveRecord::ActiveRecordError, with: :handle_active_record_exception
+  # rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found_exception
+  rescue_from ActiveRecord::RecordInvalid, with: :handle_active_record_exception
 
   private
 
@@ -18,24 +18,20 @@ class ApplicationController < ActionController::API
     exception_response(error_body(error), :not_found)
   end
 
-  def handle_active_record_exception(error)
-    exception_response(error_body(error), :bad_request, :warn)
-  end
-
-  def save(record)
-    raise ActiveRecord::ActiveRecordError, record.errors.messages unless record.save
+  def handle_active_record_exception(exception)
+    exception_response(error_body(exception.record.errors), :bad_request, :warn)
   end
 
   def error_body(message)
     {
         error: true,
-        message: message
+        result: message
     }
   end
 
   def exception_response(body, status = 500, log=:error )
     Rails.logger.send(log, body)
-    json_response(body, status)
+    render json: body.merge({status: Rack::Utils::SYMBOL_TO_STATUS_CODE[status]}), status: status
   end
 
 end

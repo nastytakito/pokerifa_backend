@@ -4,7 +4,7 @@ module Api
 
       def create
         @user = User.new(user_params)
-        save @user
+        @user.save!
       end
 
       private

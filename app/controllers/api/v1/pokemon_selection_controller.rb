@@ -8,12 +8,13 @@ module Api
       end
 
       def show
-        json_response PokemonSelection.find params[:id]
+        @pokemon_selection = PokemonSelection.find params[:id]
       end
 
       def create
         @pokemon_selection = PokemonSelection.new(pokemon_selection_params)
-        save @pokemon_selection
+        @pokemon_selection.save!
+        render :show
       end
 
       private

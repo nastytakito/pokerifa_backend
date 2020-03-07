@@ -3,8 +3,7 @@ module Api
     class PokedexController < ApplicationController
 
       def index
-        pokedex = Pokedex.all
-        json_response(pokedex)
+        @pokedex = Pokedex.all
       end
 
       def show

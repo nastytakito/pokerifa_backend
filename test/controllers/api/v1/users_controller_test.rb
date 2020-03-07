@@ -47,7 +47,7 @@ module Api
       test "empty last name" do
         @test_user[:user][:last_name] = ''
         post(index_create_url,body(@test_user))
-        assert_equal({last_name: ["can't be blank"]}.to_s, json_response['message'])
+        assert_equal({last_name: ["can't be blank"]}.as_json, json_response)
       end
 
       test "that created user basic info will be returned after creation" do
