@@ -4,10 +4,10 @@ one:
   name: Mario
   last_name: Mtz
   email: mario@mtz.com
-  password: 123456
+  password_digest: 123456
 
 two:
   name: Wario
   last_name: Ztm
   email: wario@ztm.com
-  password: 123456
+  password_digest: 123456R
